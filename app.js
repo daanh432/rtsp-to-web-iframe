@@ -80,8 +80,15 @@ document.addEventListener('DOMContentLoaded', function () {
         get: (searchParams, prop) => searchParams.get(prop),
     });
 
+    const custom = params.custom;
+    const baseUrl = params.baseUrl;
     const uid = params.uid;
 
-    const videoEl = document.querySelector('#video');
-    msePlay(videoEl, `ws://192.168.140.23:8083/stream/${uid}/channel/0/mse?uuid=${uid}&channel=0`);
+    if (custom == null || custom == '') {
+        const videoEl = document.querySelector('#video');
+        msePlay(videoEl, `${baseUrl}/stream/${uid}/channel/0/mse?uuid=${uid}&channel=0`);
+    } else {
+        const videoEl = document.querySelector('#video');
+        msePlay(videoEl, `${custom}`);
+    }
 })
